@@ -6,7 +6,7 @@ Minimalistic exercise on the blade element momentum (BEM) theory with the softwa
 ## Content
 
 The repository contains:
-  - **driver_EX1.dvr** as first tutorial
+  - **driver_EX1.dvr** as the .dvr file used for the tutorial
   - **Ex1_input.dat** as input
   - **NRELOffshrBsline5MW_AeroDyn_blade.dat** as input
   - The script **RUN_ME.m** which calls Aerodyn and processes some of the output data
