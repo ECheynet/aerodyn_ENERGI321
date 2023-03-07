@@ -2,7 +2,7 @@
 
 
 ## Summary
-Tutorial for the aerodyn software for teaching in the course [ENERGI210](https://www.uib.no/en/course/ENERGI210) at the University of Bergen (UiB)
+Minimalistic excercise on the blade element momentum (BEM) theory with the software Aerodyn for teaching in the course [ENERGI210](https://www.uib.no/en/course/ENERGI210) at the University of Bergen (UiB)
 
 ## Content
 
