@@ -15,7 +15,7 @@ The repository contains:
   - A folder **bin** containing various versions of Aerodyn.exe
   - A folder **airfoil_NREL_5MW**, which contains the airfoil data for the 5 MW NREL turbine
   
- For those who prefer python, it is possible to use **RUN_ME.py** on Windows. Howeverm this script is less robust than the Matlab version
+ For those who prefer python, it is possible to use **RUN_ME.py** on Windows. However, this script is less robust than the Matlab version
   
   The first time that RUN_ME is used, a folder **outputFiles** is created. The output files are stored in this folder automatically
  
