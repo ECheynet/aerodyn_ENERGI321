@@ -13,6 +13,7 @@ if ismac
 elseif isunix
     status = system(['wine ',command]); % Code to run on Linux platform
 elseif ispc
+    command=['.\bin\AeroDyn_Driver_x64 ',filename,'.dvr'] ;
     status = system(command);  %Zero means it worked!
 else
     disp('Platform not supported')
