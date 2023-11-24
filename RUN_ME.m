@@ -11,6 +11,14 @@ tic
 [data] = readOutput(filename);
 toc
 
+
+T = readtable([filename,'.dvr'],'FileType','text','NumHeaderLines',19);
+
+%%
+clf;close all;
+figure
+plot(T.Pitch,data.Cd,'linewidth',1.2)
+grid on
 %% Plot Cp, Ct and Cq as a function of the mean wind speed
 
 %% PLot T, P and Q as a function of the mean wind speed
