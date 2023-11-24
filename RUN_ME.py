@@ -13,17 +13,35 @@ import shutil
 import glob
 import re
 import pandas as pd
-##
+import platform  # Import platform module
 
+# Function to get the OS type
+def get_os_type():
+    os_type = platform.system().lower()
+    if 'linux' in os_type or 'darwin' in os_type:  # Darwin is for MacOS
+        return 'unix'
+    elif 'windows' in os_type:
+        return 'windows'
+    else:
+        raise ValueError("Unsupported operating system")
+
+# Filename
 filename = 'driver_EX1'
 
-if not os.path.exists('outputFiles'):
-   os.makedirs('outputFiles')
-   
-   
-# %%
+# Ensure the outputFiles directory exists
+output_dir = 'outputFiles'
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
-os.system(r'.\bin\AeroDyn_Driver_x64 ' + filename + '.dvr')      #Execute the AeroDyn driver
+# Determine the command based on OS type
+os_type = get_os_type()
+if os_type == 'unix':
+    command = 'wine ./bin/AeroDyn_Driver_x64.exe ' + filename + '.dvr'
+elif os_type == 'windows':
+    command = r'.\bin\AeroDyn_Driver_x64.exe ' + filename + '.dvr'
+
+# Execute the command
+os.system(command)
 
 # %%
 # Moves the output files into the correct folder
