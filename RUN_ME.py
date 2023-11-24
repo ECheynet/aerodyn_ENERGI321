@@ -94,6 +94,62 @@ for i in range (NumCases):
 
     
 
-#%%
+#%%  Plotting
 
  # short test: plt.plot(wndspeed,power_curve)
+
+#
+
+# Power Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, power_curve, 'o-', color='blue')
+plt.title('Power Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('Power (Watts)')
+plt.grid(True)
+plt.show()
+
+# Thrust Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, thrust_curve, 'o-', color='red')
+plt.title('Thrust Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('Thrust (Newtons)')
+plt.grid(True)
+plt.show()
+
+# Tip Speed Ratio (TSR) Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, TSR_curve, 'o-', color='green')
+plt.title('Tip Speed Ratio (TSR) Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('TSR')
+plt.grid(True)
+plt.show()
+
+# Coefficient of Performance (Cp) Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, Cp_curve, 'o-', color='purple')
+plt.title('Coefficient of Performance (Cp) Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('Cp')
+plt.grid(True)
+plt.show()
+
+# Coefficient of Thrust (Ct) Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, Ct_curve, 'o-', color='orange')
+plt.title('Coefficient of Thrust (Ct) Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('Ct')
+plt.grid(True)
+plt.show()
+
+# Rotor Speed Curve
+plt.figure(figsize=(10, 6))
+plt.plot(wndspeed, speed_curve, 'o-', color='brown')
+plt.title('Rotor Speed Curve')
+plt.xlabel('Wind Speed (m/s)')
+plt.ylabel('Rotor Speed (RPM)')
+plt.grid(True)
+plt.show()
