@@ -14,43 +14,36 @@ function [data] = readOutput(filename)
 % Author: E Cheynet - UiB - 15/03/2022
 
 data0 = dir(['outputFiles/',filename,'.*.out']);
-Nsamples = numel(data0);
+N = numel(data0);
 
-Cp = zeros(1,Nsamples);
-Ct = zeros(1,Nsamples);
-Cq = zeros(1,Nsamples);
-P = zeros(1,Nsamples);
-T = zeros(1,Nsamples);
-RPM = zeros(1,Nsamples);
-TSR = zeros(1,Nsamples);
-meanU= zeros(1,Nsamples);
-Cd= zeros(Nsamples,9);
+Cp = zeros(1,N);
+Ct = zeros(1,N);
+Cq = zeros(1,N);
+P = zeros(1,N);
+T = zeros(1,N);
+RPM = zeros(1,N);
+TSR = zeros(1,N);
+meanU= zeros(1,N);
 % str2double(regexp(xx, '\d*', 'match'))
 
-for ii=1:Nsamples
-        dummyName = [data0(ii).folder,'/',data0(ii).name];
+for ii=1:N
+    %     dummyName = [data0(ii).folder,'/',data0(ii).name];
     %     fid = fopen(dummyName);   %Open the output files in a loop depending on number of cases
     
-    % dummyName = ['outputFiles/',filename,'.' num2str(ii) '.out'];
-    % fid = fopen( dummyName );
-    % Read_OutData = textscan(fid, '%f %f %f %f %f %f %f %f %f', 'HeaderLines',9);
-    % OutData=Read_OutData(1,:);
-    % OutData= cell2mat(OutData);
-
-    T0=readtable(dummyName,'FileType','text');
-    indT = find(T0.Time>7);
-
-    RPM(ii) = median(T0.RtSpeed(indT),'omitnan');
-    TSR(ii)= median(T0.RtTSR(indT),'omitnan');
-    P(ii) = median(T0.RtAeroPwr(indT),'omitnan');
-    T(ii) = median(T0.RtAeroFxh(indT),'omitnan');
-    Cp(ii)=median(T0.RtAeroCp(indT),'omitnan');
-    Ct(ii)=median(T0.RtAeroCt(indT),'omitnan');
-    Cq(ii)=median(T0.RtAeroCq(indT),'omitnan');
-    
-    for jj=1:9
-    Cd(ii,jj)=median(T0.(['B1N',num2str(jj),'Cd'])(indT),'omitnan');
-    end
+    dummyName = ['outputFiles/',filename,'.' num2str(ii) '.out'];
+    fid = fopen( dummyName );
+    Read_OutData = textscan(fid, '%f %f %f %f %f %f %f %f %f', 'HeaderLines',9);
+    OutData=Read_OutData(1,:);
+    OutData= cell2mat(OutData);
+    N = round(size(OutData,1)/2);
+    RPM(ii) = nanmedian(OutData(N:end,2));
+    TSR(ii)= nanmedian(OutData(N:end,3));
+    P(ii) = nanmedian(OutData(N:end,4));
+    T(ii) = nanmedian(OutData(N:end,5));
+    Cp(ii)=nanmedian(OutData(N:end,6));
+    Ct(ii)=nanmedian(OutData(N:end,7));
+    Cq(ii)=nanmedian(OutData(N:end,8));
+    fclose(fid);
     
     % Get the mean wind speed
     dummy = importfile(dummyName,5,5, ['%s%s%*[^\n]'],{';',':'});
@@ -66,7 +59,6 @@ data.P = P(ind);
 data.T = T(ind);
 data.Cp = Cp(ind);
 data.Cq = Cq(ind);
-data.Cd = Cd(ind,:);
 data.Ct = Ct(ind);
 data.meanU = meanU(ind);
 
